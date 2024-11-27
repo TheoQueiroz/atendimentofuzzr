@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Entregas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Titillium+Web:wght@400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <style>
+        /* Aplicando fontes */
+        body {
+            font-family: 'Titillium Web', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Anton', sans-serif;
+        }
+
+        label, input, button {
+            font-family: 'Titillium Web', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo2.png" alt="Logo da Empresa">
+        <h1>Formulário de Entrega de Materiais</h1>
+        <form id="deliveryForm" action="https://script.google.com/a/macros/fuzzr.com.br/s/AKfycbwjswfEwuNV3PZCOLlYAOYkR2kHvIGUMtQIepPEu7EQ4oUh2pcSLocftssNKWD2PSaT/exec" method="post">
+            <label for="atendimento">Atendimento:</label>
+            <select id="atendimento" name="atendimento" readonly>
+                <option value="RAISSA">RAISSA</option>
+                <option value="CELINE">CELINE</option>
+                <option value="ANAFLAVIA">ANA FLAVIA</option>
+            </select>
+
+            <label for="cliente">Cliente:</label>
+            <select id="cliente" name="cliente">
+                <option value="CB">Casas Bahia</option>
+                <option value="PONTO">Ponto</option>
+                <option value="ASSAI">Assai</option>
+                <option value="HAVAN">Havan</option>
+            </select>
+
+            <label for="campanha">Campanha:</label>
+            <input type="text" id="campanha" name="campanha" value="">
+
+            <label for="loc">Loc:</label>
+            <input type="number" id="loc" name="loc" value="0">
+
+            <label for="spot">Spot:</label>
+            <input type="number" id="spot" name="spot" value="0">
+            
+            <label for="trilha">Trilha:</label>
+            <input type="number" id="trilha" name="trilha" value="0">
+
+            <label for="mix">Mix:</label>
+            <input type="number" id="mix" name="mix" value="0">
+
+            <label for="ajuste">Ajuste:</label>
+            <input type="number" id="ajuste" name="ajuste" value="0">
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+<script>
+    // Mapeamento de e-mails para nomes
+    const users = {
+        "raissa@fuzzr.com.br": "RAISSA",
+        "celine@fuzzr.com.br": "CELINE",
+        "anaflavia@fuzzr.com.br": "ANAFLAVIA"
+    };
+
+    // Recupera o e-mail do localStorage
+    const emailLogado = localStorage.getItem('userEmail');
+
+    console.log("Email logado:", emailLogado);  // Verifica se o e-mail está sendo recuperado corretamente
+
+    // Função para preencher o campo usuário automaticamente
+    function preencherUsuario(email) {
+        if (email) {
+            const nomeUsuario = users[email.toLowerCase()] || "Usuário não encontrado";
+            document.getElementById('atendimento').value = nomeUsuario;
+        } else {
+            window.location.href = 'login.html';  // Redireciona para o login se não houver e-mail armazenado
+        }
+    }
+
+    // Chama a função ao carregar a página
+    preencherUsuario(emailLogado);
+</script>
+</body>
+</html>
